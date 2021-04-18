@@ -13,19 +13,13 @@ class ImageController extends Controller{
             $path = $image->store('uploads',"public");
         }
         return view("memory/confirm", compact('image'));
-    }
-    public function complete(Request $request){
-        if($image) {
-            //画像の保存に成功したらDBに記録する
-            if($path){
-                Image::create([
-                    "file_name" => $image->getClientOriginalName(),
+    //画像の保存に成功したらDBに記録する
+    if($path){
+        dd($path);
+        Image::create([
+                "file_name" => $image->getClientOriginalName(),
                 ]);
-            }
-        }
         return view("memory/complete");
-        }
-
-
-
+                }
+    }
 }
